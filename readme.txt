@@ -13,8 +13,9 @@ What is the Program Doing?
 -such as the, and, or, it, ect. The hash function seperates pretty evenly with a couple index's having
 -move titles in them because the words are more common than others, such as Love.
 //-------------------------------------------------------
-Where is the Video of me using the Project?
--The link to the video is here --https://www.youtube.com/watch?v=A8u9ZhXFuIg--
+Where is the Video of me using the Project and how do I get the necessary datafile?
+-The link to the video of me using the project is here --https://www.youtube.com/watch?v=A8u9ZhXFuIg--
+-The link to get the database file is here --https://datasets.imdbws.com/-- Download the "title.basics.tsv.gz", unzip the file and save the title.basics.tsv in the folder containing the project.
 //-------------------------------------------------------
 How do I use the program?
 -There are a couple main steps to using the program.
