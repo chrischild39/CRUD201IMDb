@@ -14,8 +14,9 @@ What is the Program Doing?
 -move titles in them because the words are more common than others, such as Love.
 //-------------------------------------------------------
 Where is the Video of me using the Project and how do I get the necessary datafile?
--The link to the video of me using the project is here --https://www.youtube.com/watch?v=A8u9ZhXFuIg--
--The link to get the database file is here --https://datasets.imdbws.com/-- Download the "title.basics.tsv.gz", unzip the file and save the title.basics.tsv in the folder containing the project.
+-The link to the video of me using the project is here --https://www.youtube.com/watch?v=A8u9ZhXFuIg --
+-The link to get the database file is here --https://datasets.imdbws.com/ -- Download the "title.basics.tsv.gz", unzip the file and save the title.basics.tsv in the folder containing the project.
+-My GitHub ID : 46551942 -- the link to my github folder -- https://github.com/chrischild39/CRUD201IMDb --
 //-------------------------------------------------------
 How do I use the program?
 -There are a couple main steps to using the program.
