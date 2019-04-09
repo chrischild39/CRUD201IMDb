@@ -14,7 +14,8 @@ What is the Program Doing?
 -move titles in them because the words are more common than others, such as Love.
 //-------------------------------------------------------
 Where is the Video of me using the Project?
--The link to the video is here --https://www.youtube.com/watch?v=A8u9ZhXFuIg--
+-The link to the video is here --https://www.youtube.com/watch?v=fljD010gR8o--
+-The link to the download for the title.basics.tsv is here --https://datasets.imdbws.com/-- Download and unzip title.basics.tsv and save it in the folder with this project
 //-------------------------------------------------------
 How do I use the program?
 -There are a couple main steps to using the program.
