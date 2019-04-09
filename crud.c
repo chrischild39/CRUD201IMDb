@@ -210,24 +210,27 @@ int mainmenu(struct item * chain[], int size, char * user_option, char * filenam
     wclear(stdscr);
     endwin();
     addmovie(chain, size, user_option, filename);
+    return 0;
   }
   else if (strcasecmp(user_option, "remove movie") == 0 ){
     wclear(stdscr);
     endwin();
     removemovie(chain, size, user_option, filename);
-
+    return 0;
   }
 
   else if (strcasecmp(user_option, "update movie") == 0 ){
     wclear(stdscr);
     endwin();
     updatemovie(chain, size, user_option, filename);
+    return 0;
   }
 
   else if (strcasecmp(user_option, "view") == 0 ){
     wclear(stdscr);
     endwin();
     view(chain, size, user_option, filename);
+    return 0;
   }
 
   else if (strcasecmp(user_option, "quit") == 0 ){
@@ -242,6 +245,7 @@ int mainmenu(struct item * chain[], int size, char * user_option, char * filenam
     endwin();
     wclear(stdscr);
     mainmenu(chain, size, user_option, filename);
+    return 0;
   }
   return 0;
 }
@@ -293,6 +297,7 @@ int removemovie(struct item * chain[], int size, char * user_option, char * file
       wclear(stdscr);
       endwin();
       mainmenu(chain, size, user_option, filename);
+      return 0;
     }
     else {
       printw("     Sorry! That is not an option.     \n");
@@ -300,6 +305,7 @@ int removemovie(struct item * chain[], int size, char * user_option, char * file
       wclear(stdscr);
       endwin();
       mainmenu(chain, size, user_option, filename);
+      return 0;
     }
   }
   else {
@@ -350,6 +356,7 @@ int removemovie(struct item * chain[], int size, char * user_option, char * file
       wclear(stdscr);
       endwin();
       mainmenu(chain, size, user_option, filename);
+      return 0;
     }
     else {
       printw("     Sorry! That is not an option.     \n");
@@ -357,6 +364,7 @@ int removemovie(struct item * chain[], int size, char * user_option, char * file
       wclear(stdscr);
       endwin();
       mainmenu(chain, size, user_option, filename);
+      return 0;
     }
   }
   return 0;
@@ -556,6 +564,7 @@ int addmovie(struct item * chain[], int size, char * user_option, char * filenam
         wclear(stdscr);
         endwin();
         mainmenu(chain, size, user_option, filename);
+        return 0;
       }
       else {
         printw("     Sorry! That is not an option.     \n");
@@ -563,6 +572,7 @@ int addmovie(struct item * chain[], int size, char * user_option, char * filenam
         wclear(stdscr);
         endwin();
         mainmenu(chain, size, user_option, filename);
+        return 0;
       }
     }
   }
@@ -587,6 +597,7 @@ int addmovie(struct item * chain[], int size, char * user_option, char * filenam
     wclear(stdscr);
     endwin();
     mainmenu(chain, size, user_option, filename);
+    return 0;
   }
   else {
     printw("     Sorry! That is not an option.     \n");
@@ -594,6 +605,7 @@ int addmovie(struct item * chain[], int size, char * user_option, char * filenam
     wclear(stdscr);
     endwin();
     mainmenu(chain, size, user_option, filename);
+    return 0;
   }
 
   return 0;
@@ -645,6 +657,7 @@ int updatemovie(struct item * chain[], int size, char * user_option, char * file
       wclear(stdscr);
       endwin();
       mainmenu(chain, size, user_option, filename);
+      return 0;
     }
     else {
       printw("     Sorry! That is not an option.     \n");
@@ -652,6 +665,7 @@ int updatemovie(struct item * chain[], int size, char * user_option, char * file
       wclear(stdscr);
       endwin();
       mainmenu(chain, size, user_option, filename);
+      return 0;
     }
   }
 
@@ -856,6 +870,7 @@ int updatemovie(struct item * chain[], int size, char * user_option, char * file
     wclear(stdscr);
     endwin();
     mainmenu(chain, size, user_option, filename);
+    return 0;
   }
   else {
     printw("     Sorry! That is not an option.     \n");
@@ -863,6 +878,7 @@ int updatemovie(struct item * chain[], int size, char * user_option, char * file
     wclear(stdscr);
     endwin();
     mainmenu(chain, size, user_option, filename);
+    return 0;
   }
   return 0;
 }
@@ -918,6 +934,7 @@ int view(struct item * chain[], int size, char * user_option, char * filename){
     wclear(stdscr);
     endwin();
     mainmenu(chain, size, user_option, filename);
+    return 0;
   }
   else {
     printw("     Sorry! That is not an option.     \n");
@@ -925,6 +942,7 @@ int view(struct item * chain[], int size, char * user_option, char * filename){
     wclear(stdscr);
     endwin();
     mainmenu(chain, size, user_option, filename);
+    return 0;
   }
   return 0;
 }
