@@ -52,6 +52,10 @@ int checkfile(char * filename);
 int getlin(char * filename);
 int findmatch(char * filename, int j, char * title, char * minutes);
 int findmatch1(char * filename, int j, char * title);
+void getlin2(char * filename);
+void getlin3(char * filename);
+int view(struct item * chain[], int size, char * user_option, char * filename);
+
 
 //function to check if the users file is empty;
 int checkfile(char * filename){
@@ -89,7 +93,57 @@ int getlin(char * filename){
 
   return j;
 }
+void getlin2(char * filename){
+  FILE *user = NULL;
+  user = fopen( filename , "r" );
+  char str[1000];
 
+  while (fgets(str, sizeof(str), user) != NULL) {
+      wprintw(stdscr,"%s",str);
+  }
+  refresh();
+  fclose(user);
+  return;
+}
+void getlin3(char * filename){
+
+  int lines = getlin(filename);
+  if (lines <= 45) {
+    getlin2(filename);
+    return;
+  }
+  else {
+    FILE *user = NULL;
+    user = fopen( filename , "r" );
+    int cha = 48;
+    int flag = 0;
+    char str[1000];
+    while ( cha != 32 && flag == 0){
+      //wprintw(stdscr,"a\n");
+      if ( cha == 48 ) {
+        //wprintw(stdscr,"b\n");
+        for (int i = 0; i < 45; i++){
+          //wprintw(stdscr,"c\n");
+          if (fgets(str, sizeof(str), user) == NULL) {
+            fclose(user);
+            flag++;
+            break;
+          }
+          else {
+            wprintw(stdscr,"%s", str);
+          }
+        }
+      }
+      refresh();
+      cha = getch();
+      wclear(stdscr);
+      move(0,0);
+      refresh();
+    }
+    fclose(user);
+  }
+  return;
+}
 int findmatch(char * filename, int j, char * title, char * minutes) {
   FILE *user = NULL;
   user = fopen( filename , "r" );
@@ -143,7 +197,7 @@ int mainmenu(struct item * chain[], int size, char * user_option, char * filenam
   printw("     Hello! Welcome to the IMDb Movie Database!              \n");
   printw("          What would you like to do?                         \n");
   printw("      Options: 'add movie' - 'remove movie'                  \n");
-  printw("               'update movie'                                \n");
+  printw("               'update movie' - 'view'                               \n");
   printw("               'quit'                                        \n");
   refresh();
   printw("     /  \n");
@@ -168,6 +222,12 @@ int mainmenu(struct item * chain[], int size, char * user_option, char * filenam
     wclear(stdscr);
     endwin();
     updatemovie(chain, size, user_option, filename);
+  }
+
+  else if (strcasecmp(user_option, "view") == 0 ){
+    wclear(stdscr);
+    endwin();
+    view(chain, size, user_option, filename);
   }
 
   else if (strcasecmp(user_option, "quit") == 0 ){
@@ -329,11 +389,29 @@ int addmovie(struct item * chain[], int size, char * user_option, char * filenam
     endwin();
     mainmenu(chain, size, user_option, filename);
   }
+  wclear(stdscr);
 
-  printw("      We found some moives that contain that word.                   \n");
-  printw("      Which movie would you like to add?                             \n");
+  refresh();
+  int det = 0;
+  det = getlin("title.index.tsv");
+  if (det > 45) {
+    printw("        We Found some movies that match that name.                             \n");
+    //printw("      Enter 'quit' at any time to go back to the main menu.          \n");
+    printw("        Instructions: Press 0 to switch pages.        \n");
+    //printw("                      If the number of movies is less than 44, just enter the number to the LEFT of the movie.        \n");
+    printw("                      Otherwise, Press \" \" anytime you are ready to enter the number to the LEFT of the movie.          \n");
+    printw("                      Press Enter to begin looking at the movie selections.                         \n");
+    refresh();
+    getch();
+
+    wclear(stdscr);
+  }
+
+  getlin3("title.index.tsv");
+
+  printw("\n        Which movie would you like to add?                             \n");
   //printw("      Enter 'quit' at any time to go back to the main menu.          \n");
-  printw("      Instructions: Enter the NUMBER to the LEFT of the movie        \n");
+  printw("        Instructions: Enter the NUMBER to the LEFT of the movie        \n");
   printw("                    if that movie is the one you would like          \n");
   printw("                    to add to your database.                         \n");
   refresh();
@@ -341,6 +419,8 @@ int addmovie(struct item * chain[], int size, char * user_option, char * filenam
   printw("      / \n");
   printw("       |: ");
   scanw("%d", &num);
+
+  wclear(stdscr);
 
   printw("\n       What is your file name?                          \n");
   printw("       If you do not have one enter the name you would like.           \n");
@@ -786,6 +866,68 @@ int updatemovie(struct item * chain[], int size, char * user_option, char * file
   }
   return 0;
 }
+int view(struct item * chain[], int size, char * user_option, char * filename){
+
+  wclear(stdscr);
+
+  printw("\n       What is your file name?                          \n");
+  //printw("       If you do not have one enter the name you would like.           \n");
+  //printw("       If you are making a file, make sure the file ends with .txt     \n");
+  printw("     / \n");
+  printw("      / \n");
+  printw("       |: ");
+  getnstr(filename, 99);
+
+  wclear(stdscr);
+
+  refresh();
+  int det = 0;
+  det = getlin(filename);
+  if (det > 45) {
+    //printw("        We Found some movies that match that name.                             \n");
+    //printw("      Enter 'quit' at any time to go back to the main menu.          \n");
+    printw("\n        Instructions: Press 0 to switch pages.        \n");
+    //printw("                      If the number of movies is less than 44, just enter the number to the LEFT of the movie.        \n");
+    printw("                      Otherwise, Press \" \" anytime you are ready to enter the number to the LEFT of the movie.          \n");
+    printw("                      Press Enter to begin looking at the movies in your file.                         \n");
+    refresh();
+    getch();
+
+    wclear(stdscr);
+  }
+
+  getlin3(filename);
+
+  printw("\n      What would you like to do now?           \n");
+  printw("      Options: 'quit' - back to main menu      \n");
+  printw("               'exit' - end program \n");
+  printw("     / \n");
+  printw("      / \n");
+  printw("       |: ");
+  getnstr(user_option, 300);
+
+  if (strcasecmp(user_option, "exit") == 0 ){
+    printw("     Thanks for using the IMDb Movie Database!     \n");
+    printw("                 HAVE A GOOD DAY!                  \n");
+    wclear(stdscr);
+    endwin();
+    return(0);
+
+  }
+  else if (strcasecmp(user_option, "quit") == 0 ){
+    wclear(stdscr);
+    endwin();
+    mainmenu(chain, size, user_option, filename);
+  }
+  else {
+    printw("     Sorry! That is not an option.     \n");
+    printw("     Redirecting to Main Menu...       \n");
+    wclear(stdscr);
+    endwin();
+    mainmenu(chain, size, user_option, filename);
+  }
+  return 0;
+}
 
 /*function to make the index key for the hash*/
 int num(char * t, int size){
@@ -842,6 +984,7 @@ int search(struct item * chain[], int size, char * input, char * filename) {
       /* get the first token */
       if (strcasecmp(token, input) == 0) {
         fprintf(index, "%d:\t%s\t%s\t\n", j, temp->title, temp->minutes); j++;
+
         break;
       }
       else if (token[len-1] == ';' || token[len-1] == ':' || token[len-1] == ','){
